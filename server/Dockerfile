@@ -1,11 +1,12 @@
 # Common build stage
 FROM node:14.14.0-alpine3.12 as common-build-stage
+WORKDIR /app/
 
-COPY . ./app
-
-WORKDIR /app
+COPY package*.json ./app/
 
 RUN npm install
+
+COPY . ./app/
 
 EXPOSE 3000
 
