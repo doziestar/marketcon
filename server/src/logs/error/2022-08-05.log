@@ -1,0 +1,57 @@
+2022-08-05 18:47:31 error: uncaughtException: Cannot find module '/Users/user/Documents/Github/marketcon/server/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node'
+Require stack:
+- /Users/user/Documents/Github/marketcon/server/node_modules/bcrypt/bcrypt.js
+- /Users/user/Documents/Github/marketcon/server/src/services/auth.service.ts
+- /Users/user/Documents/Github/marketcon/server/src/controllers/auth.controller.ts
+- /Users/user/Documents/Github/marketcon/server/src/routes/auth.route.ts
+- /Users/user/Documents/Github/marketcon/server/src/server.ts
+Error: Cannot find module '/Users/user/Documents/Github/marketcon/server/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node'
+Require stack:
+- /Users/user/Documents/Github/marketcon/server/node_modules/bcrypt/bcrypt.js
+- /Users/user/Documents/Github/marketcon/server/src/services/auth.service.ts
+- /Users/user/Documents/Github/marketcon/server/src/controllers/auth.controller.ts
+- /Users/user/Documents/Github/marketcon/server/src/routes/auth.route.ts
+- /Users/user/Documents/Github/marketcon/server/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (/Users/user/Documents/Github/marketcon/server/node_modules/@cspotcode/source-map-support/source-map-support.js:811:30)
+    at Function.Module._resolveFilename (/Users/user/Documents/Github/marketcon/server/node_modules/tsconfig-paths/src/register.ts:90:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/Users/user/Documents/Github/marketcon/server/node_modules/bcrypt/bcrypt.js:6:16)
+    at Module._compile (node:internal/modules/cjs/loader:1103:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1155:10)
+    at Object.require.extensions.<computed> [as .js] (/Users/user/Documents/Github/marketcon/server/node_modules/ts-node/src/index.ts:1608:43)
+2022-08-05 18:47:31 error: uncaughtException: connect ECONNREFUSED 127.0.0.1:3306
+SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306
+    at ConnectionManager.connect (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/mysql/connection-manager.js:116:17)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async ConnectionManager._connect (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/abstract/connection-manager.js:326:24)
+    at async /Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/abstract/connection-manager.js:250:32
+    at async ConnectionManager.getConnection (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/abstract/connection-manager.js:280:7)
+    at async /Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/sequelize.js:629:26
+    at async Sequelize.authenticate (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/sequelize.js:963:5)
+2022-08-05 18:48:55 error: uncaughtException: Please install pg package manually
+Error: Please install pg package manually
+    at ConnectionManager._loadDialectModule (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/abstract/connection-manager.js:81:15)
+    at new ConnectionManager (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/postgres/connection-manager.js:18:24)
+    at new PostgresDialect (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/postgres/index.js:15:30)
+    at new Sequelize (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/sequelize.js:359:20)
+    at Object.<anonymous> (/Users/user/Documents/Github/marketcon/server/src/databases/index.ts:6:19)
+    at Module._compile (node:internal/modules/cjs/loader:1103:14)
+    at Module.m._compile (/Users/user/Documents/Github/marketcon/server/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1155:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/user/Documents/Github/marketcon/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+2022-08-05 19:22:40 error: uncaughtException: Please install pg package manually
+Error: Please install pg package manually
+    at ConnectionManager._loadDialectModule (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/abstract/connection-manager.js:81:15)
+    at new ConnectionManager (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/postgres/connection-manager.js:18:24)
+    at new PostgresDialect (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/dialects/postgres/index.js:15:30)
+    at new Sequelize (/Users/user/Documents/Github/marketcon/server/node_modules/sequelize/src/sequelize.js:359:20)
+    at Object.<anonymous> (/Users/user/Documents/Github/marketcon/server/src/databases/index.ts:6:19)
+    at Module._compile (node:internal/modules/cjs/loader:1103:14)
+    at Module.m._compile (/Users/user/Documents/Github/marketcon/server/node_modules/ts-node/src/index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1155:10)
+    at Object.require.extensions.<computed> [as .ts] (/Users/user/Documents/Github/marketcon/server/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)

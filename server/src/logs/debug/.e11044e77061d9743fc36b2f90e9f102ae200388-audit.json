@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/Users/user/Documents/Github/marketcon/server/src/logs/debug/.e11044e77061d9743fc36b2f90e9f102ae200388-audit.json",
+    "files": [
+        {
+            "date": 1659721650486,
+            "name": "/Users/user/Documents/Github/marketcon/server/src/logs/debug/2022-08-05.log",
+            "hash": "e4c72aa031f3c84659fa97c46b23f453e028c929e62bb53c47c813b27a219409"
+        }
+    ],
+    "hashType": "sha256"
+}
