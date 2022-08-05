@@ -28,9 +28,9 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.client-secure.entrypoints=web'
-      - 'traefik.http.routers.client-secure.rule=Host(`api.localhost`)'
-      - 'traefik.http.services.portainer.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.server-secure.entrypoints=web'
+      - 'traefik.http.routers.server-secure.rule=Host(`api.localhost`)'
+      - 'traefik.http.services.server.loadbalancer.server.port=6000'
 
   cbn-pg:
     container_name: cbn-pg
@@ -46,8 +46,8 @@ services:
       - POSTGRES_HOST=postgres
       - POSTGRES_SSL=false
 
-  pgAdmin:
-    container_name: cbn-pg-admin
+  pgadmin:
+    container_name: cbn-pg
     image: dpage/pgadmin4:6.12
     restart: 'unless-stopped'
     networks:
@@ -63,9 +63,9 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.client-secure.entrypoints=web'
-      - 'traefik.http.routers.client-secure.rule=Host(`db.localhost`)'
-      - 'traefik.http.services.portainer.loadbalancer.server.port=8080'
+      - 'traefik.http.routers.pgadmin-secure.entrypoints=web'
+      - 'traefik.http.routers.pgadmin-secure.rule=Host(`db.localhost`)'
+      - 'traefik.http.services.pgadmin.loadbalancer.pgadmin.port=8080'
 
   client:
     container_name: cbn-client
@@ -84,9 +84,10 @@ services:
       - 'traefik.docker.network=backend'
       - 'traefik.http.routers.client-secure.entrypoints=web'
       - 'traefik.http.routers.client-secure.rule=Host(localhost`)'
-  traefik:
+      - 'traefik.http.services.client.loadbalancer.client.port=3000'
+  cbn-proxy:
     image: traefik:latest
-    container_name: traefik
+    container_name: cbn-proxy
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
@@ -105,30 +106,30 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.traefik-secure.entrypoints=websecure'
-      - 'traefik.http.routers.traefik-secure.rule=Host(`traefik.localhost`)'
-      - 'traefik.http.routers.traefik-secure.middlewares=user-auth@file'
-      - 'traefik.http.routers.traefik-secure.service=api@internal'
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      # - proxy
-      - backend
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./portainer-data:/data
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.portainer-secure.entrypoints=web'
-      - 'traefik.http.routers.portainer-secure.rule=Host(`portainer.localhost`)'
-      - 'traefik.http.routers.portainer-secure.service=portainer'
-      - 'traefik.http.services.portainer.loadbalancer.server.port=9000'
+      - 'traefik.http.routers.cbn-proxy-secure.entrypoints=websecure'
+      - 'traefik.http.routers.cbn-proxy-secure.rule=Host(`proxy.localhost`)'
+      - 'traefik.http.routers.cbn-proxy-secure.middlewares=user-auth@file'
+      - 'traefik.http.routers.cbn-proxy-secure.service=api@internal'
+  # portainer:
+  #   image: portainer/portainer-ce:latest
+  #   container_name: portainer
+  #   restart: unless-stopped
+  #   security_opt:
+  #     - no-new-privileges:true
+  #   networks:
+  #     # - proxy
+  #     - backend
+  #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - ./portainer-data:/data
+  #   labels:
+  #     - 'traefik.enable=true'
+  #     - 'traefik.docker.network=backend'
+  #     - 'traefik.http.routers.portainer-secure.entrypoints=web'
+  #     - 'traefik.http.routers.portainer-secure.rule=Host(`portainer.localhost`)'
+  #     - 'traefik.http.routers.portainer-secure.service=portainer'
+  #     - 'traefik.http.services.portainer.loadbalancer.server.port=9000'
 
 networks:
   backend:
