@@ -47,7 +47,7 @@ services:
       - POSTGRES_SSL=false
 
   pgadmin:
-    container_name: cbn-pg
+    container_name: cbn-pgadmin
     image: dpage/pgadmin4:6.12
     restart: 'unless-stopped'
     networks:
@@ -83,7 +83,7 @@ services:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
       - 'traefik.http.routers.client-secure.entrypoints=web'
-      - 'traefik.http.routers.client-secure.rule=Host(localhost`)'
+      - 'traefik.http.routers.client-secure.rule=Host(`localhost`)'
       - 'traefik.http.services.client.loadbalancer.client.port=3000'
   cbn-proxy:
     image: traefik:latest
@@ -106,9 +106,9 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.cbn-proxy-secure.entrypoints=websecure'
+      - 'traefik.http.routers.cbn-proxy-secure.entrypoints=web'
       - 'traefik.http.routers.cbn-proxy-secure.rule=Host(`proxy.localhost`)'
-      - 'traefik.http.routers.cbn-proxy-secure.middlewares=user-auth@file'
+      # - 'traefik.http.routers.cbn-proxy-secure.middlewares=user-auth@file'
       - 'traefik.http.routers.cbn-proxy-secure.service=api@internal'
   # portainer:
   #   image: portainer/portainer-ce:latest

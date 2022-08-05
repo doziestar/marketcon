@@ -19,6 +19,7 @@ services:
       - cbn-pg
     depends_on:
       - cbn-pg
+      - pgadmin
     environment:
       - DB_HOST=host.docker.internal
       - DB_PORT=5432
@@ -47,7 +48,7 @@ services:
       - POSTGRES_SSL=false
 
   pgadmin:
-    container_name: cbn-pg
+    container_name: cbn-pgadmin
     image: dpage/pgadmin4:6.12
     restart: 'unless-stopped'
     networks:
@@ -63,9 +64,9 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
-      - 'traefik.http.routers.pgAdmin-secure.entrypoints=web'
-      - 'traefik.http.routers.pgAdmin-secure.rule=Host(`db.localhost`)'
-      - 'traefik.http.services.pgAdmin.loadbalancer.pgAdmin.port=8080'
+      - 'traefik.http.routers.pgadmin-secure.entrypoints=web'
+      - 'traefik.http.routers.pgadmin-secure.rule=Host(`db.localhost`)'
+      - 'traefik.http.services.pgadmin.loadbalancer.pgadmin.port=8080'
 
   client:
     container_name: cbn-client
@@ -76,6 +77,8 @@ services:
     #   - '3000:3000'
     depends_on:
       - server
+      - cbn-pg
+      - pgadmin
     networks:
       # - proxy
       - backend
@@ -83,7 +86,7 @@ services:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
       - 'traefik.http.routers.client-secure.entrypoints=web'
-      - 'traefik.http.routers.client-secure.rule=Host(localhost`)'
+      - 'traefik.http.routers.client-secure.rule=Host(`localhost`)'
       - 'traefik.http.services.client.loadbalancer.client.port=3000'
   cbn-proxy:
     image: traefik:latest

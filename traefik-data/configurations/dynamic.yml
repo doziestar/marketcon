@@ -3,7 +3,7 @@ http:
   middlewares:
     secureHeaders:
       headers:
-        sslRedirect: true
+        # sslRedirect: true
         forceSTSHeader: true
         stsIncludeSubdomains: true
         stsPreload: true

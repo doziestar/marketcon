@@ -1,12 +1,13 @@
 # Common build stage
-FROM node:14.14.0-alpine3.12 as common-build-stage
-WORKDIR /app/
+FROM node:18-buster as common-build-stage
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY package*.json ./app/
+COPY package*.json /app
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
-COPY . ./app/
+COPY . /app
 
 EXPOSE 3000
 
