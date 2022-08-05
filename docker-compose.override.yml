@@ -19,6 +19,12 @@ services:
       - cbn-pg
     depends_on:
       - cbn-pg
+    environment:
+      - DB_HOST=host.docker.internal
+      - DB_PORT=5432
+      - DB_USER=cbn
+      - DB_PASSWORD=cbn123
+      - DB_DATABASE=marketcon
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=backend'
