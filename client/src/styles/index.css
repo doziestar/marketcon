@@ -1,0 +1,66 @@
+body {
+	/* background-color: #000;
+	color: #ddd; */
+}
+.signup-layout {
+	min-height: 100vh;
+}
+.signup-layout .container,
+.signup-layout .row {
+	min-height: 100vh;
+}
+.signup-container {
+	min-height: 300px;
+}
+.signup-layout-children-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.layout-left {
+	height: 100%;
+	background-color: #eee;
+	border-radius: 50px;
+}
+.input-field {
+	border-radius: 20px;
+	border: 1px solid #ddd;
+	padding: 0.5px 0;
+}
+.short-input-field {
+	border-radius: 20px;
+	border: 1px solid #ddd;
+	padding: 0.5px 0;
+	width: 40px;
+	text-align: center;
+}
+.password-input {
+	border: none;
+	flex: 1;
+}
+.signup-btn {
+	border-radius: 20px !important;
+	padding: 10px !important;
+	text-decoration: none !important;
+	text-transform: none !important;
+	font-weight: bold !important;
+}
+.id-type-btn {
+	border-radius: 20px !important;
+	text-decoration: none !important;
+	text-transform: none !important;
+	font-weight: bold !important;
+	padding-left: 40px !important;
+	padding-right: 40px !important;
+}
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
