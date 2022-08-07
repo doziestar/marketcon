@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-function InputField({ label, type, placeholder }) {
+function InputField({
+	label,
+	type,
+	placeholder,
+	name,
+	value,
+	onChange,
+	dynamicRef,
+}) {
 	const [id, setId] = useState("");
 	const [resolvedType, setResolvedType] = useState(type);
 
@@ -23,6 +31,10 @@ function InputField({ label, type, placeholder }) {
 				className="short-input-field p-2 mx-2"
 				placeholder="_"
 				maxLength={1}
+				name={name}
+				value={value}
+				onChange={onChange}
+				ref={dynamicRef}
 			/>
 		);
 	}
@@ -34,7 +46,13 @@ function InputField({ label, type, placeholder }) {
 				</label>
 				{type === "password" ? (
 					<div className="input-field d-flex flex-row overflow-hidden px-2">
-						<input type={resolvedType} className="password-input" />
+						<input
+							type={resolvedType}
+							className="password-input"
+							name={name}
+							value={value}
+							onChange={onChange}
+						/>
 						<IconButton onClick={togglePasswordDisplay}>
 							{resolvedType === "password" ? (
 								<FaEye />
@@ -48,7 +66,10 @@ function InputField({ label, type, placeholder }) {
 						id={id}
 						type={type}
 						className="input-field p-2"
+						name={name}
 						placeholder={placeholder}
+						value={value}
+						onChange={onChange}
 					/>
 				)}
 			</div>
@@ -60,6 +81,8 @@ InputField.defaultProps = {
 	label: "",
 	type: "text",
 	placeholder: "",
+	name: "",
+	ref: null,
 };
 
 export default InputField;
