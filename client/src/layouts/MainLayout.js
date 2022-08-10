@@ -5,7 +5,7 @@ import {
 	Typography,
 	List,
 	Toolbar,
-	MuiAppBar,
+	AppBar as MuiAppBar,
 	CssBaseline,
 	Drawer,
 	Box,
@@ -16,11 +16,11 @@ import {
 	ListItemText,
 } from "@mui/material";
 import {
-	InboxIcon,
-	MailIcon,
-	ChevronRightIcon,
-	ChevronLeftIcon,
-	MenuIcon,
+	MoveToInbox as InboxIcon,
+	Mail as MailIcon,
+	ChevronRight as ChevronRightIcon,
+	ChevronLeft as ChevronLeftIcon,
+	Menu as MenuIcon,
 } from "@mui/icons-material";
 
 import { Link } from "react-router-dom";
@@ -72,9 +72,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 	justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft({ children }) {
+export default function MainLayout({ children }) {
 	const theme = useTheme();
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState(true);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
