@@ -16,12 +16,11 @@ import {
 	ListItemText,
 } from "@mui/material";
 import {
-	MoveToInbox as InboxIcon,
-	Mail as MailIcon,
 	ChevronRight as ChevronRightIcon,
 	ChevronLeft as ChevronLeftIcon,
 	Menu as MenuIcon,
 } from "@mui/icons-material";
+import { FaTachometerAlt } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
@@ -127,27 +126,24 @@ export default function MainLayout({ children }) {
 				</DrawerHeader>
 				<Divider />
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map(
-						(text, index) => (
-							<ListItem
-								key={text}
-								disablePadding
-								component={Link}
-								to={text.toLowerCase().split(" ").join("-")}
-							>
-								<ListItemButton>
-									<ListItemIcon>
-										{index % 2 === 0 ? (
-											<InboxIcon />
-										) : (
-											<MailIcon />
-										)}
-									</ListItemIcon>
-									<ListItemText primary={text} />
-								</ListItemButton>
-							</ListItem>
-						)
-					)}
+					{["Dashboard"].map((text, index) => (
+						<ListItem
+							key={text}
+							disablePadding
+							component={Link}
+							to={text.toLowerCase().split(" ").join("-")}
+						>
+							<ListItemButton>
+								<ListItemIcon>
+									{index === 0 && <FaTachometerAlt />}
+								</ListItemIcon>
+								<ListItemText
+									className="text-dark"
+									primary={text}
+								/>
+							</ListItemButton>
+						</ListItem>
+					))}
 				</List>
 			</Drawer>
 			<Main open={open}>
